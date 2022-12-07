@@ -8,6 +8,8 @@ import {
 } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 
+import Layout from '@/containers/Layout';
+
 const faqs = [
   {
     question: "What's the best thing about Switzerland?",
@@ -641,6 +643,10 @@ const Index = () => {
       </div>
     </div>
   );
+};
+
+Index.getLayout = function getLayout(page: React.ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export default Index;
