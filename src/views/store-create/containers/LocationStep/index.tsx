@@ -1,4 +1,12 @@
+import type { BodyCreateStorefrontDTO } from '@tokenbricks/sfas-backend-typescript-axios-client';
+import { BodyCreateStorefrontDTOTypeEnum } from '@tokenbricks/sfas-backend-typescript-axios-client';
+import { useMutation } from 'react-query';
+import { v4 as uuidv4 } from 'uuid';
+
+import { v1StorefrontsApi } from '@/apis/coreBackend/defHttp';
+
 import { StepIndex } from '../../enum/step';
+import { useStoreFormStore } from '../../store/storeForm';
 import CountrySelect from '../CountrySelect';
 import CreateStoreCard from '../CreateStoreCard';
 
@@ -7,11 +15,27 @@ interface Props {
 }
 
 export default function LocationStep({ setStepIndex }: Props) {
+  const { storeName, setStoreId } = useStoreFormStore();
+
+  const mutation = useMutation((body: BodyCreateStorefrontDTO) => {
+    return v1StorefrontsApi.createStorefront(body);
+  });
+
   const handleBack = () => {
     setStepIndex(StepIndex.StoreName);
   };
   const handleSkip = () => {};
-  const handleNext = () => {};
+  const handleNext = () => {
+    setStepIndex(StepIndex.BuildingStore);
+    const uuid = uuidv4();
+    setStoreId(uuid);
+    mutation.mutate({
+      id: uuid,
+      name: storeName ?? uuid,
+      type: BodyCreateStorefrontDTOTypeEnum.erc20,
+    });
+  };
+
   return (
     <CreateStoreCard
       className="w-[35rem]"
@@ -43,10 +67,12 @@ export default function LocationStep({ setStepIndex }: Props) {
         </button>
         <button
           type="button"
-          className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+          className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:bg-slate-400"
           onClick={handleNext}
         >
-          Create
+          <div className="flex">
+            <span>Create</span>
+          </div>
         </button>
       </div>
     </CreateStoreCard>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import BuildingStoreStep from '@/views/store-create/containers/BuildingStoreStep';
 import GetStartStep from '@/views/store-create/containers/GetStartStep';
 import LocationStep from '@/views/store-create/containers/LocationStep';
 import StoreNameStep from '@/views/store-create/containers/StoreNameStep';
@@ -22,6 +23,9 @@ export default function StoreCreate() {
       break;
     case StepIndex.Location:
       stepView = <LocationStep setStepIndex={setStepIndex} />;
+      break;
+    case StepIndex.BuildingStore:
+      stepView = <BuildingStoreStep />;
       break;
     default:
       throw Error('Error: StepIndex type');

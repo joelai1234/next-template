@@ -3,6 +3,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const { getRuntimeConfig } = require('./runtimeConfig');
+
+const { serverRuntimeConfig, publicRuntimeConfig } = getRuntimeConfig();
+
 module.exports = withBundleAnalyzer({
   eslint: {
     dirs: ['.'],
@@ -14,4 +18,6 @@ module.exports = withBundleAnalyzer({
   // So, the source code is "basePath-ready".
   // You can remove `basePath` if you don't need it.
   reactStrictMode: true,
+  serverRuntimeConfig,
+  publicRuntimeConfig,
 });

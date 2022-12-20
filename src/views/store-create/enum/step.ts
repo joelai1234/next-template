@@ -3,4 +3,5 @@ export enum StepIndex {
   StoreTemplate = 'StoreTemplate',
   GetStart = 'GetStart',
   Location = 'Location',
+  BuildingStore = 'BuildingStore',
 }

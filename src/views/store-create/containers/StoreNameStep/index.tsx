@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import { StepIndex } from '../../enum/step';
+import { useStoreFormStore } from '../../store/storeForm';
 import CreateStoreCard from '../CreateStoreCard';
 
 interface Props {
@@ -6,14 +9,19 @@ interface Props {
 }
 
 export default function StoreNameStep({ setStepIndex }: Props) {
+  const { storeName, setStoreName } = useStoreFormStore();
+  const [inputStoreName, setInputStoreName] = useState(storeName);
+
   const handleBack = () => {
     setStepIndex(StepIndex.StoreTemplate);
   };
   const handleSkip = () => {
     setStepIndex(StepIndex.Location);
+    setStoreName('');
   };
   const handleNext = () => {
     setStepIndex(StepIndex.Location);
+    setStoreName(inputStoreName);
   };
   return (
     <CreateStoreCard
@@ -26,6 +34,10 @@ export default function StoreNameStep({ setStepIndex }: Props) {
           <input
             type="text"
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            value={inputStoreName}
+            onChange={(e) => {
+              setInputStoreName(e.target.value);
+            }}
           />
         </div>
       </div>
