@@ -1,0 +1,54 @@
+import { StepIndex } from '../../enum/step';
+import CountrySelect from '../CountrySelect';
+import CreateStoreCard from '../CreateStoreCard';
+
+interface Props {
+  setStepIndex: (stepIndex: StepIndex) => void;
+}
+
+export default function LocationStep({ setStepIndex }: Props) {
+  const handleBack = () => {
+    setStepIndex(StepIndex.StoreName);
+  };
+  const handleSkip = () => {};
+  const handleNext = () => {};
+  return (
+    <CreateStoreCard
+      className="w-[35rem]"
+      title="Where will your business be located?"
+      description="We'll use your location to set up your default shipping rates, recommended apps, and more."
+    >
+      <div className="mt-4">
+        <label className="block font-medium text-gray-700">
+          Country/Region
+        </label>
+        <div className="mt-1">
+          <CountrySelect />
+        </div>
+      </div>
+      <div className="mt-14 mb-2  flex justify-end">
+        <button
+          type="button"
+          className="mr-auto rounded-lg border border-gray-200 bg-white py-2.5 px-5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
+          onClick={handleBack}
+        >
+          Back
+        </button>
+        <button
+          type="button"
+          className="mr-2 rounded-lg border border-gray-200 bg-white py-2.5 px-5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200"
+          onClick={handleSkip}
+        >
+          Skip
+        </button>
+        <button
+          type="button"
+          className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+          onClick={handleNext}
+        >
+          Create
+        </button>
+      </div>
+    </CreateStoreCard>
+  );
+}
