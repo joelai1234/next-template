@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 
-const { parsed: config } = dotenv.config();
+const { parsed } = dotenv.config();
+const config = { ...process.env, ...parsed };
 
 const EXPOSE_BROWSER_ENV_PREFIX = 'NEXT_PUBLIC_';
 
