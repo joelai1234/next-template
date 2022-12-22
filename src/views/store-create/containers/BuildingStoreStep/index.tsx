@@ -1,5 +1,4 @@
 import { StorefrontAoStatusEnum } from '@tokenbricks/sfas-backend-typescript-axios-client';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
@@ -9,7 +8,6 @@ import { useStoreFormStore } from '../../store/storeForm';
 import CreateStoreCard from '../CreateStoreCard';
 
 export default function BuildingStoreStep() {
-  const router = useRouter();
   const { id } = useStoreFormStore();
 
   const [loadingDots, setLoadingDots] = useState('.');
@@ -25,7 +23,9 @@ export default function BuildingStoreStep() {
           data.data.status === StorefrontAoStatusEnum.DEPLOY_SUCCESS &&
           data.data.dashboardExternalDomain
         ) {
-          router.replace(data.data.dashboardExternalDomain);
+          window.location.replace(
+            `https://${data.data.dashboardExternalDomain}`
+          );
         }
       },
       refetchInterval: 10000,
