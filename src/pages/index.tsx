@@ -100,16 +100,16 @@ const features = [
     icon: EnvelopeIcon,
   },
 ];
-const Index = () => {
+const Home = () => {
   return (
     <div>
-      <section className="bg-white dark:bg-gray-900">
+      <section className="bg-gray-900">
         <div className="mx-auto grid max-w-screen-xl px-4 py-8 lg:grid-cols-12 lg:gap-12 lg:py-16 xl:gap-0">
           <div className="mr-auto place-self-center lg:col-span-7 xl:col-span-8">
-            <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
+            <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl xl:text-6xl">
               Building digital products &amp; brands.
             </h1>
-            <p className="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
+            <p className="mb-6 max-w-2xl font-light text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
               Here at flowbite we focus on markets where technology, innovation,
               and capital can unlock long-term value and drive economic growth.
             </p>
@@ -118,13 +118,13 @@ const Index = () => {
                 <div className="relative mr-3 w-auto">
                   <label
                     htmlFor="member_email"
-                    className="mb-2 hidden text-sm font-medium text-gray-900 dark:text-gray-300"
+                    className="mb-2 hidden text-sm font-medium  text-gray-300"
                   >
                     Email address
                   </label>
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <svg
-                      className="h-5 w-5 text-gray-500 dark:text-gray-400"
+                      className="h-5 w-5 text-gray-400"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +134,7 @@ const Index = () => {
                     </svg>
                   </div>
                   <input
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 pl-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 md:w-96"
+                    className="block w-full rounded-lg border border-gray-600 bg-gray-700  p-3 pl-10 text-sm  text-white placeholder:text-gray-400 focus:border-primary-500 focus:ring-primary-500 md:w-96"
                     placeholder="Enter your email"
                     type="email"
                     name="member[email]"
@@ -145,25 +145,19 @@ const Index = () => {
                   <input
                     type="submit"
                     defaultValue="Try for free"
-                    className="cursor-pointer rounded-lg bg-primary-700 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                    className="cursor-pointer rounded-lg bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-700 focus:ring-4 focus:ring-primary-800"
                     name="member_submit"
                     id="member_submit"
                   />
                 </div>
               </div>
-              <div className="text-left text-sm text-gray-500 dark:text-gray-300">
+              <div className="text-left text-sm text-gray-300">
                 Instant signup. No credit card required.{' '}
-                <a
-                  href="#"
-                  className="text-primary-600 hover:underline dark:text-primary-500"
-                >
+                <a href="#" className="text-primary-500 hover:underline">
                   Terms of Service
                 </a>{' '}
                 and{' '}
-                <a
-                  className="text-primary-600 hover:underline dark:text-primary-500"
-                  href="#"
-                >
+                <a className="text-primary-500 hover:underline" href="#">
                   Privacy Policy
                 </a>
                 .
@@ -240,12 +234,12 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <section className="bg-white dark:bg-gray-900">
+      <section className="bg-gray-900">
         <div className="mx-auto max-w-screen-xl py-8 px-4 sm:text-center lg:px-12 lg:py-16">
-          <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+          <h2 className="mb-4 text-4xl font-extrabold tracking-tight  text-white">
             We didn&apos;t reinvent the wheel
           </h2>
-          <p className="lg:px-38 font-light text-gray-500 dark:text-gray-400 sm:text-lg md:px-20 xl:px-48">
+          <p className="lg:px-38 font-light text-gray-400 sm:text-lg md:px-20 xl:px-48">
             We are strategists, designers and developers. Innovators and problem
             solvers. Small enough to be simple and quick, but big enough to
             deliver the scope you want at the pace you need.
@@ -304,12 +298,12 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <section className="bg-white dark:bg-gray-900">
+      <section className="bg-gray-900">
         <div className="mx-auto max-w-screen-xl space-y-12 py-8 px-4 sm:py-16 lg:space-y-20 lg:px-6">
           {/* Row */}
           <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-            <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
-              <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            <div className="text-gray-400 sm:text-lg">
+              <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-white">
                 Work with tools you already use
               </h2>
               <p className="mb-8 font-light lg:text-xl">
@@ -320,12 +314,12 @@ const Index = () => {
               {/* List */}
               <ul
                 role="list"
-                className="my-7 space-y-5 border-t border-gray-200 pt-8 dark:border-gray-700"
+                className="my-7 space-y-5 border-t  border-gray-700 pt-8"
               >
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="h-5 w-5 shrink-0 text-primary-600 dark:text-primary-500"
+                    className="h-5 w-5 shrink-0 text-primary-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -336,14 +330,14 @@ const Index = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-white">
                     Continuous integration and deployment
                   </span>
                 </li>
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="h-5 w-5 shrink-0 text-primary-600 dark:text-primary-500"
+                    className="h-5 w-5 shrink-0 text-primary-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -354,14 +348,14 @@ const Index = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-white">
                     Development workflow
                   </span>
                 </li>
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="h-5 w-5 shrink-0 text-primary-600 dark:text-primary-500"
+                    className="h-5 w-5 shrink-0 text-primary-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -372,7 +366,7 @@ const Index = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-white">
                     Knowledge management
                   </span>
                 </li>
@@ -395,8 +389,8 @@ const Index = () => {
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/features/feature-office-2.png"
               alt="office feature image 2"
             />
-            <div className="text-gray-500 dark:text-gray-400 sm:text-lg">
-              <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            <div className="text-gray-400 sm:text-lg">
+              <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-white">
                 We invest in the world’s potential
               </h2>
               <p className="mb-8 font-light lg:text-xl">
@@ -407,12 +401,12 @@ const Index = () => {
               {/* List */}
               <ul
                 role="list"
-                className="my-7 space-y-5 border-t border-gray-200 pt-8 dark:border-gray-700"
+                className="my-7 space-y-5 border-t  border-gray-700 pt-8"
               >
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="h-5 w-5 shrink-0 text-primary-600 dark:text-primary-500"
+                    className="h-5 w-5 shrink-0 text-primary-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -423,14 +417,14 @@ const Index = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight  text-white">
                     Dynamic reports and dashboards
                   </span>
                 </li>
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="h-5 w-5 shrink-0 text-primary-600 dark:text-primary-500"
+                    className="h-5 w-5 shrink-0 text-primary-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -441,14 +435,14 @@ const Index = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-white">
                     Templates for everyone
                   </span>
                 </li>
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="h-5 w-5 shrink-0 text-primary-600 dark:text-primary-500"
+                    className="h-5 w-5 shrink-0 text-primary-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -459,14 +453,14 @@ const Index = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-white">
                     Development workflow
                   </span>
                 </li>
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="h-5 w-5 shrink-0 text-primary-600 dark:text-primary-500"
+                    className="h-5 w-5 shrink-0 text-primary-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -477,14 +471,14 @@ const Index = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-white">
                     Limitless business automation
                   </span>
                 </li>
                 <li className="flex space-x-3">
                   {/* Icon */}
                   <svg
-                    className="h-5 w-5 shrink-0 text-primary-600 dark:text-primary-500"
+                    className="h-5 w-5 shrink-0 text-primary-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -495,7 +489,7 @@ const Index = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                  <span className="text-base font-medium leading-tight text-white">
                     Knowledge management
                   </span>
                 </li>
@@ -571,10 +565,10 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <section className="bg-white dark:bg-gray-900">
+      <section className="bg-gray-900">
         <div className="mx-auto max-w-screen-xl items-center gap-16 py-8 px-4 lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
-          <div className="font-light text-gray-500 dark:text-gray-400 sm:text-lg">
-            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+          <div className="font-light text-gray-400 sm:text-lg">
+            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-white">
               We didn&apos;t reinvent the wheel
             </h2>
             <p className="mb-4">
@@ -645,8 +639,8 @@ const Index = () => {
   );
 };
 
-Index.getLayout = function getLayout(page: React.ReactElement) {
+Home.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;
 };
 
-export default Index;
+export default Home;
