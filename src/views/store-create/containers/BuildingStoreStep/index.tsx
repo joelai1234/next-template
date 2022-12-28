@@ -1,4 +1,5 @@
 import { StorefrontAoStatusEnum } from '@tokenbricks/sfas-backend-typescript-axios-client';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
@@ -51,7 +52,16 @@ export default function BuildingStoreStep() {
       title={`Building your store${loadingDots}`}
       description="This will only take a moment."
     >
-      <div className="mt-4"></div>
+      <div className="mt-4 flex items-center justify-center">
+        <Link href="/store-login">
+          <button
+            type="button"
+            className="inline-flex items-center rounded-full border border-transparent bg-indigo-600 px-12 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Back to stores
+          </button>
+        </Link>
+      </div>
     </CreateStoreCard>
   );
 }

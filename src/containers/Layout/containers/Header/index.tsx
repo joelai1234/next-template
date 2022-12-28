@@ -2,7 +2,12 @@ import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
-export default function Example() {
+import { useAuth } from '@/services/auth';
+import UserButton from '@/views/store-login/containers/UserButton';
+
+export default function Header() {
+  const { authenticated } = useAuth();
+
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -39,13 +44,13 @@ export default function Example() {
                     href="#"
                     className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
                   >
-                    About
+                    Home
                   </a>
                   <a
                     href="#"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
-                    Team
+                    About
                   </a>
                   <a
                     href="#"
@@ -57,11 +62,11 @@ export default function Example() {
                     href="#"
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
-                    Calendar
+                    Team
                   </a>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <div className="absolute inset-y-0 right-0 flex items-center gap-8 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* <button
                   type="button"
                   className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -134,14 +139,35 @@ export default function Example() {
                     </Menu.Items>
                   </Transition>
                 </Menu> */}
-                <button
-                  type="button"
-                  className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  <Link href="/store-create" target="_blank">
-                    Get started
-                  </Link>
-                </button>
+
+                {!authenticated && (
+                  <>
+                    <Link href="/auth/sign-in">
+                      <div className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                        Sign in
+                      </div>
+                    </Link>
+                    <button
+                      type="button"
+                      className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                      <Link href="/auth/sign-up">Sign up</Link>
+                    </button>
+                  </>
+                )}
+                {authenticated && (
+                  <>
+                    <button
+                      type="button"
+                      className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                      <Link href="/store-login" target="_blank">
+                        Get started
+                      </Link>
+                    </button>
+                    <UserButton />
+                  </>
+                )}
               </div>
             </div>
           </div>

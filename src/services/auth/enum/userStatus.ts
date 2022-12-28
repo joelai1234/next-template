@@ -1,0 +1,5 @@
+export enum UserStatus {
+  EMAIL_VERIFICATION = 'EMAIL_VERIFICATION',
+  KYC = 'KYC',
+  COMPLETED = 'COMPLETED',
+}

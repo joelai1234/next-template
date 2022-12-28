@@ -28,10 +28,11 @@ export default function LocationStep({ setStepIndex }: Props) {
   const handleNext = () => {
     setStepIndex(StepIndex.BuildingStore);
     const uuid = uuidv4();
-    setStoreId(uuid);
+    const id = `${storeName ? `${storeName}-` : ''}${uuid.split('-')[0]}`;
+    setStoreId(id);
     mutation.mutate({
-      id: uuid,
-      name: storeName ?? uuid,
+      id,
+      name: storeName ?? id,
       type: BodyCreateStorefrontDTOTypeEnum.erc20,
     });
   };

@@ -35,7 +35,7 @@ export default function StoreCreate() {
     <div
       className="flex min-h-screen items-center justify-center"
       style={{
-        backgroundImage: 'linear-gradient(to right, #9796f0, #fbc7d4);',
+        backgroundImage: 'linear-gradient(to right, #9796f0, #fbc7d4)',
       }}
     >
       {stepView}
