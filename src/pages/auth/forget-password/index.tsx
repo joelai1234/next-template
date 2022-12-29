@@ -14,14 +14,12 @@ const ForgetPassword = () => {
     sendForgetPasswordEmail(data.email);
   };
   return (
-    <div className="flex min-h-screen flex-col justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mt-[-8rem] sm:mx-auto sm:w-full sm:max-w-md">
-        <img
-          className="mx-auto h-12 w-auto"
-          src="/assets/images/common/logo.svg"
-          alt="logo"
-        />
-      </div>
+    <div
+      className="flex min-h-screen flex-col justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8"
+      style={{
+        backgroundImage: 'linear-gradient(to right, #9796f0, #fbc7d4)',
+      }}
+    >
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <h2 className=" text-3xl font-bold tracking-tight text-gray-900">

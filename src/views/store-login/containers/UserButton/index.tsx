@@ -9,7 +9,11 @@ import { Fragment } from 'react';
 
 import { useAuth } from '@/services/auth';
 
-export default function UserButton() {
+interface Props {
+  arrow?: boolean;
+}
+
+export default function UserButton({ arrow }: Props) {
   const router = useRouter();
   const { data: session } = useSession();
   const { logout } = useAuth();
@@ -22,8 +26,20 @@ export default function UserButton() {
   return (
     <div>
       <Popover className="relative">
-        <Popover.Button className="flex items-center focus:outline-none">
-          <UserCircleIcon className="h-8 w-8 cursor-pointer fill-slate-500" />
+        <Popover.Button>
+          <div className="flex items-center">
+            <UserCircleIcon className="h-8 w-8 shrink-0 cursor-pointer fill-slate-500" />
+            {arrow && (
+              <svg
+                className="h-5 w-5 shrink-0"
+                viewBox="0 0 20 20"
+                focusable="false"
+                aria-hidden="true"
+              >
+                <path d="M10 14a.997.997 0 0 1-.707-.293l-5-5a.999.999 0 1 1 1.414-1.414L10 11.586l4.293-4.293a.999.999 0 1 1 1.414 1.414l-5 5A.997.997 0 0 1 10 14z"></path>
+              </svg>
+            )}
+          </div>
         </Popover.Button>
         <Transition
           as={Fragment}

@@ -50,7 +50,7 @@ export default function StoreLogin() {
           <div className="flex h-12 w-44 items-center justify-center bg-slate-600">
             <h1 className="leading-8 text-white">TokenBricks Logo</h1>
           </div>
-          <UserButton />
+          <UserButton arrow />
         </div>
 
         <div className="mt-12 flex items-center justify-between">

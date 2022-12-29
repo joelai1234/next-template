@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 
 import { useAuth } from '@/services/auth';
 import { ValidPasswordReg } from '@/views/auth/constants/regs';
+import CreateStoreCard from '@/views/store-create/containers/CreateStoreCard';
 
 const ResetPassword = () => {
   const { resetPassword } = useAuth();
@@ -18,20 +19,14 @@ const ResetPassword = () => {
     resetPassword(data.password, data.confirmPassword);
   };
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <img
-          className="mx-auto h-12 w-auto"
-          src="/assets/images/common/logo.svg"
-          alt="Workflow"
-        />
-        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-          Reset password
-        </h2>
-      </div>
-
+    <div
+      className="flex min-h-screen flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8"
+      style={{
+        backgroundImage: 'linear-gradient(to right, #9796f0, #fbc7d4)',
+      }}
+    >
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <CreateStoreCard title="Reset password" description="">
           <form className="space-y-6" action="#" method="POST">
             <div>
               <label
@@ -118,7 +113,7 @@ const ResetPassword = () => {
               </button>
             </div>
           </form>
-        </div>
+        </CreateStoreCard>
       </div>
     </div>
   );
