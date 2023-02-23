@@ -9,7 +9,6 @@ import {
 import classNames from 'classnames';
 
 import Layout from '@/containers/Layout';
-import { useAuth } from '@/services/auth';
 
 const faqs = [
   {
@@ -102,23 +101,8 @@ const features = [
   },
 ];
 const Home = () => {
-  const { signInWithKeycloak, logout } = useAuth();
   return (
     <div>
-      <button
-        onClick={() => {
-          signInWithKeycloak();
-        }}
-      >
-        Sign in
-      </button>
-      <button
-        onClick={() => {
-          logout();
-        }}
-      >
-        Sign out
-      </button>
       <section className="bg-gray-900">
         <div className="mx-auto grid max-w-screen-xl px-4 py-8 lg:grid-cols-12 lg:gap-12 lg:py-16 xl:gap-0">
           <div className="mr-auto place-self-center lg:col-span-7 xl:col-span-8">
