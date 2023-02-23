@@ -3,7 +3,6 @@ import {
   ArrowRightCircleIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/solid';
-import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { Fragment } from 'react';
 
@@ -14,13 +13,14 @@ interface Props {
 }
 
 export default function UserButton({ arrow }: Props) {
-  const router = useRouter();
+  // const router = useRouter();
   const { data: session } = useSession();
-  const { logout } = useAuth();
+  const { logout, signInWithKeycloak } = useAuth();
 
   const handleLogout = async () => {
     await logout();
-    router.replace('/auth/sign-in');
+    await signInWithKeycloak();
+    // router.replace('/auth/sign-in');
   };
 
   return (
@@ -57,9 +57,11 @@ export default function UserButton({ arrow }: Props) {
                   <UserCircleIcon className="h-10 w-10 fill-slate-500" />
                 </div>
                 <div className="text-[12px]">
-                  <h4 className="font-bold">{session?.user.me.name}</h4>
-                  <p className=" break-all text-slate-400">
-                    {session?.user.me.email}
+                  <h4 className="font-bold">
+                    {session?.user?.preferred_username}
+                  </h4>
+                  <p className="break-all text-slate-400">
+                    {session?.user?.email ?? 'no email'}
                   </p>
                 </div>
               </div>

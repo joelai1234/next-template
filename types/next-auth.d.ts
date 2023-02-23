@@ -8,6 +8,9 @@ declare module 'next-auth' {
   interface Session {
     user: {
       /** The user's postal address. */
+      access_token: string;
+      preferred_username: string;
+      email_verified: boolean;
       accessToken: string;
       accessTokenExpires?: number;
       refreshToken: string;
@@ -16,6 +19,9 @@ declare module 'next-auth' {
     } & DefaultSession['user'];
   }
   interface User {
+    access_token: string;
+    preferred_username: string;
+    email_verified: boolean;
     accessToken: string;
     accessTokenExpires?: number;
     refreshToken: string;

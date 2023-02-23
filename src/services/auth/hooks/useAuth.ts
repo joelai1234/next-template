@@ -141,6 +141,11 @@ export const useAuth = () => {
     }
   };
 
+  const signInWithKeycloak = async () => {
+    const res = await authMethod.keycloak.signIn();
+    console.log(res);
+  };
+
   const signUpVerification = async (token: string | string[] | undefined) => {
     console.log('signUpVerification');
     if (typeof token === 'string') {
@@ -188,6 +193,7 @@ export const useAuth = () => {
     authenticatedCoreBackendApi,
     signInWithCredentials,
     signUpWithCredentials,
+    signInWithKeycloak,
     logout,
     resetPassword,
     sendForgetPasswordEmail,

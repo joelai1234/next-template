@@ -9,8 +9,10 @@ import { useAuthStore } from '../store/useAuthStore';
  * After the user logs in, add the token to the api header and remove it after logging out
  */
 export const useInitCoreBackendAxios = () => {
-  const { data: session } = useSession();
-  const accessToken = session?.user.accessToken;
+  const session = useSession();
+  console.log('session', session);
+  const accessToken = session?.data?.user.access_token;
+  // const accessToken = session?.data?.user.id_token;
   const { setAuthenticatedCoreBackendApi } = useAuthStore();
   useEffect(() => {
     if (accessToken) {

@@ -6,7 +6,11 @@ import { useAuth } from '@/services/auth';
 import UserButton from '@/views/store-login/containers/UserButton';
 
 export default function Header() {
-  const { authenticated } = useAuth();
+  const { authenticated, signInWithKeycloak } = useAuth();
+
+  const handleSignIn = () => {
+    signInWithKeycloak();
+  };
 
   return (
     <Disclosure as="nav" className="bg-white shadow">
@@ -142,14 +146,16 @@ export default function Header() {
 
                 {!authenticated && (
                   <>
-                    <Link href="/auth/sign-in">
-                      <div className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                        Sign in
-                      </div>
-                    </Link>
+                    <div
+                      className="cursor-pointer whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+                      onClick={handleSignIn}
+                    >
+                      Sign in
+                    </div>
                     <button
                       type="button"
                       className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={handleSignIn}
                     >
                       <Link href="/auth/sign-up">Sign up</Link>
                     </button>

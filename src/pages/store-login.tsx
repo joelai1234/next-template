@@ -1,7 +1,6 @@
 import { HomeModernIcon } from '@heroicons/react/24/solid';
 import classNames from 'classnames';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 
@@ -12,9 +11,12 @@ import StoreCard from '@/views/store-login/components/StoreCard';
 import UserButton from '@/views/store-login/containers/UserButton';
 
 export default function StoreLogin() {
-  const router = useRouter();
-  const { authenticated, authenticatedCoreBackendApi } = useAuth();
-
+  const {
+    authenticated,
+    authenticatedCoreBackendApi,
+    signInWithKeycloak,
+    isLoading: isLoadingAuth,
+  } = useAuth();
   const { data, isLoading: isLoadingGetStorefronts } = useQuery(
     ['v1StorefrontsApi.getStorefronts'],
     async () => {
@@ -26,10 +28,10 @@ export default function StoreLogin() {
   const isEmpty = data?.data.items.length === 0;
 
   useEffect(() => {
-    if (router.isReady && !authenticated) {
-      router.replace('/auth/sign-in');
+    if (!authenticated && !isLoadingAuth) {
+      signInWithKeycloak();
     }
-  }, [authenticated, router]);
+  }, [authenticated, isLoadingAuth]);
 
   const isLoading = isLoadingGetStorefronts || !authenticatedCoreBackendApi;
 
@@ -124,16 +126,3 @@ export default function StoreLogin() {
     </div>
   );
 }
-
-// export default function At() {
-//   return (
-//     <div
-//       className=" flex min-h-screen items-center justify-center"
-//       style={{
-//         backgroundImage: 'linear-gradient(to right, #9796f0, #fbc7d4)',
-//       }}
-//     >
-//       <div>124</div>
-//     </div>
-//   );
-// }

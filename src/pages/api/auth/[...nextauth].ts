@@ -9,7 +9,9 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import getConfig from 'next/config';
 import type { NextAuthOptions, User } from 'next-auth';
 import NextAuth from 'next-auth';
+import type { JWT } from 'next-auth/jwt';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import KeycloakProvider from 'next-auth/providers/keycloak';
 
 import { v1AuthApi } from '@/apis/coreBackend/defHttp';
 import { createAxios } from '@/utils/http/createAxios';
@@ -47,14 +49,6 @@ async function refreshAccessToken(tokenUser: User) {
 console.log(refreshAccessToken);
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
-  let maxAge = 30 * 60;
-
-  const rememberMe = Boolean(req.cookies.rememberMe);
-
-  if (rememberMe) {
-    maxAge = 7 * 24 * 60 * 60;
-  }
-
   const authOptions: NextAuthOptions = {
     secret: NEXT_PUBLIC_SESSION_SECRET,
     providers: [
@@ -64,6 +58,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
           email: { label: 'email', type: 'email' },
           password: { label: 'password', type: 'password' },
         },
+        // @ts-ignore
         async authorize(credentials) {
           if (!credentials?.email || !credentials?.password) {
             return null;
@@ -88,43 +83,56 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             return user;
           }
 
-          return null;
+          return undefined;
         },
       }),
+      KeycloakProvider({
+        clientId: process.env.KEYCLOAK_ID,
+        clientSecret: process.env.KEYCLOAK_SECRET,
+        issuer: process.env.KEYCLOAK_ISSUER,
+        profile: (profile) => ({
+          ...profile,
+          id: profile.sub,
+        }),
+      }),
     ],
-    pages: {
-      signIn: '/auth/sign-in',
-    },
+    // pages: {
+    //   signIn: '/auth/sign-in',
+    // },
     callbacks: {
-      async jwt({ token, user }: any) {
-        // console.log('callbacks jwt');
-
-        if (user) {
-          token.user = user;
+      async jwt({ token, account, user, profile }) {
+        console.log('callbacks token', token);
+        console.log('callbacks account', account);
+        console.log('callbacks user', user);
+        console.log('callbacks profile', profile);
+        if (account) {
+          token.id_token = account.id_token;
+          token.access_token = account.access_token;
+          token.refresh_token = account.refresh_token;
+          token.refresh_expires_in = account.refresh_expires_in;
+          token.provider = account.provider;
+          token.preferred_username = user?.preferred_username;
+          token.email = user?.email;
+          token.email_verified = user?.email_verified;
         }
-
-        // const tokenUser = token.user as User;
-
-        // if (
-        //   tokenUser?.accessTokenExpires &&
-        //   tokenUser?.accessTokenExpires < Date.now()
-        // ) {
-        //   token.user = await refreshAccessToken(tokenUser);
-        // }
-
         return token;
       },
       async session({ session, token }) {
-        session.user = token.user as any;
-
+        session.user = token as any;
         return session;
       },
     },
-    session: {
-      maxAge,
-    },
-    jwt: {
-      maxAge,
+    events: {
+      async signOut({ token }: { token: JWT }) {
+        if (token.provider === 'keycloak') {
+          const logOutUrl = new URL(
+            `${process.env.KEYCLOAK_ISSUER}/protocol/openid-connect/logout`
+          );
+          // @ts-ignore
+          logOutUrl.searchParams.set('id_token_hint', token.id_token!);
+          await fetch(logOutUrl);
+        }
+      },
     },
   };
 
