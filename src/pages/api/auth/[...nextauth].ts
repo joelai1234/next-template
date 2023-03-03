@@ -16,12 +16,9 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     secret: NEXT_PUBLIC_SESSION_SECRET,
     providers: [
       KeycloakProvider({
-        // clientId: process.env.KEYCLOAK_ID,
-        // clientSecret: process.env.KEYCLOAK_SECRET,
-        // issuer: process.env.KEYCLOAK_ISSUER,
-        clientId: 'sfas',
-        clientSecret: 'f8eacvc6D1L9qPaijPSjtRc2IHwjA5Jt',
-        issuer: 'https://accounts.tokenbricks-dev.com/realms/tokenbricks',
+        clientId: process.env.KEYCLOAK_ID,
+        clientSecret: process.env.KEYCLOAK_SECRET,
+        issuer: process.env.KEYCLOAK_ISSUER,
         profile: (profile) => ({
           ...profile,
           id: profile.sub,
